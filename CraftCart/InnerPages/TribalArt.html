@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tribal Art Collection</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 30px;
+            background-color: #f1e5c6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #7c4f20;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .search-sort {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"],
+        select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            position: relative;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .card-price {
+            color: green;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .card-button {
+            padding: 8px 12px;
+            background-color: #7c4f20;
+            font-weight: bolder;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+
+        }
+
+        .card-button:hover {
+            background-color: #f7b016;
+            color: black;
+            font-weight: bolder;
+        }
+
+        .card-fav {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 40px;
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            transition: color 0.3s;
+        }
+
+        .card-fav.fav {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Tribal Art Collection</h1>
+
+    <div class="controls">
+        <div class="search-sort">
+            <input type="text" id="searchInput" placeholder="Search tribal art..." />
+            <select id="sortSelect">
+                <option value="">Sort By</option>
+                <option value="priceLow">Price: Low to High</option>
+                <option value="priceHigh">Price: High to Low</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+
+    <script>
+        const tribalItems = [
+            {
+                id: "tribal1",
+                title: "Aaratrika: A Lamp",
+                price: 599,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_6935_grande.jpg?v=1518498766"
+            },
+            {
+                id: "tribal2",
+                title: "Bhringaraka: A Flower Holder",
+                price: 999,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_6931_grande.jpg?v=1518498479"
+            },
+            {
+                id: "tribal3",
+                title: "Dedeepya: Source Of Eternal Light",
+                price: 1250,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_6927_grande.jpg?v=1518498248"
+            },
+            {
+                id: "tribal4",
+                title: "Mandiram: A Place Of Worship",
+                price: 2999,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_6932_grande.jpg?v=1518498532"
+            },
+            {
+                id: "tribal5",
+                title: "Pushpakarandaka: The Flower Basket",
+                price: 750,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_6920_grande.jpg?v=1518497977"
+            },
+            {
+                id: "tribal6",
+                title: "Naudhwaja: A Boat with a Flag",
+                price: 750,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_6921_grande.jpg?v=1518497924"
+            }
+        ];
+
+        const grid = document.getElementById("productGrid");
+        const searchInput = document.getElementById("searchInput");
+        const sortSelect = document.getElementById("sortSelect");
+
+        function render(data) {
+            grid.innerHTML = "";
+            data.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.onclick = () => {
+                    window.location.href = `Details/item-detail.html?itemId=${item.id}`;
+                };
+                card.innerHTML = `
+          <div class="card-fav" onclick="event.stopPropagation(); toggleFavorite('${item.id}', this)">♡</div>
+          <img src="${item.image}" alt="${item.title}" />
+          <div class="card-body">
+            <div class="card-title">${item.title}</div>
+            <div class="card-price">₹${item.price.toLocaleString()}</div>
+            <button class="card-button">View Details</button>
+          </div>
+        `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterAndSort() {
+            const query = searchInput.value.toLowerCase();
+            let filtered = tribalItems.filter(i => i.title.toLowerCase().includes(query));
+            const sort = sortSelect.value;
+            if (sort === "priceLow") filtered.sort((a, b) => a.price - b.price);
+            else if (sort === "priceHigh") filtered.sort((a, b) => b.price - a.price);
+            render(filtered);
+        }
+
+        const favoriteItems = new Set();
+
+        function toggleFavorite(id, elem) {
+            if (favoriteItems.has(id)) {
+                favoriteItems.delete(id);
+                elem.classList.remove("fav");
+                elem.textContent = "♡";
+            } else {
+                favoriteItems.add(id);
+                elem.classList.add("fav");
+                elem.textContent = "♥";
+            }
+        }
+
+        searchInput.addEventListener("input", filterAndSort);
+        sortSelect.addEventListener("change", filterAndSort);
+
+        render(tribalItems);
+    </script>
+</body>
+
+</html>

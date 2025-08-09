@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout</title>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    /* background-color: rgb(251, 220, 155); */
+    background-color: #7c4f20;
+  }
+
+  .checkout-container {
+    max-width: 500px;
+    margin: auto;
+    /* background-color: #7c4f20; */
+    background-color: rgb(251, 220, 155);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    text-align: center; /* Center-aligns all content inside */
+  }
+
+  img {
+    max-width: 100%;
+    height: 250px;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 20px auto; /* Center image and add spacing below */
+  }
+
+  h2 {
+    margin-top: 0;
+    font-size: 28px;
+    color: #2c2c2c;
+  }
+
+  .price {
+    color: #b12704;
+    font-size: 24px;
+    margin: 15px 0;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+  }
+
+  .btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    font-weight: bolder;
+  }
+
+  .btn:hover {
+    background-color: #218838;
+  }
+  .btn1{
+    background-color: #f4c95d ;
+    color: black;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    font-weight: bolder;
+  }
+  .btn1:hover {
+    background-color: #e0b14a;
+  }
+</style>
+
+</head>
+<body>
+
+<div class="checkout-container" id="checkoutDetails">
+  <!-- JS will load product here -->
+</div>
+
+<script>
+    const productData = {
+        home1: {
+                title: "Abhedabhava:Krishna Playing Flute with Radha by His Side",
+                description: " Radha and Krishna even after being separated remain united in soul, spirit and in the consciousness of millions of followers.The love of Radha and Krishna is the blissful form of divine regality, an ocean of unlimited divine bliss. Krishna is referred as the “poornatam purushottam brahma” or the supreme personality of the god. Thus all the forms of god reside within Krishna, where all the forms are absolute and divinely one. This green stone carved sculpture in all its magnificence potrays the divine bonding of radha and krishna in Gokul.",
+                image: "https://www.artisanscrest.in/cdn/shop/products/sculpture-greenstone-statue-radha-krishna-34_grande.jpeg?v=1487657372",
+                price: 13500
+            },
+            home2: {
+                title: "Chaturbhuj: One Who Has Four Arms",
+                price: 27500,
+                image: "https://www.artisanscrest.in/cdn/shop/products/sculpture-redstone-statue-ganesha-32_grande.jpeg?v=1487657525",
+                description: "Carved out of red stone with all its fine details, this 15” tall statue is testimony to a rare artisanship of the distant past that has been kept alive by a group of extremley skilled artisans.Ganesha or the elephant god is worshiped world over as the destroyer of evil and bestower of prosperity.Suggested Placement: This sculpture in all its glory can be entrenched in the puja room or in the living room.Note: This can also be custom made i.e hand sculpted over a specific time frameArtist : Rabi Sahoo",
+            },
+            home3: {
+                title: "Abhirupa: The Beautiful Lady Musician",
+                price: 3069,
+                image: "https://www.artisanscrest.in/cdn/shop/products/actmsslpmi-84_grande.jpg?v=1488439779",
+                description: "In ancient times, the kings were the biggest and most generous patrons of art and culture. Their patronage allowed traditional artists and craftsmen to flourish and the grateful artisans immortalized their courts in the form of beautiful and exquisite works of art. This intricately carved wooden sculpture captures a skilled woman musician in the midst of playing a beautiful melody on her string instrument to entertain the king and his court. The adroit craftsmanship captures the grandness of her outfit, complete with precious stones and the look of intense concentration as she focuses on entertaining the rapturous audience through her craft.",
+            },
+            home4: {
+                title: "Deepasthambham Plain",
+                price: 54500,
+                image: "https://www.artisanscrest.in/cdn/shop/products/kerala-lamp-bell-metal-handmade-04_grande.jpg?v=1487056259",
+                description: "The Deepasthambham Vilakku (the Malayalam word for lamp) is a representation of the ornate traditional lamps which are found in temples across India.Cast in bell metal, this handcrafted multi-layered structure is designed to house many wicks in one lamp. Each lamp is handmade in the Kerala Tradition by experts and can take about 30 days to complete.This ornate piece of work is ideal for puja rooms, but can also be placed in the hall to highlight the Indian tradition of lighting lamps for every occasion.This handcrafted artifact is custom-made and is priced according to the size and your requirements. Get in touch with us to purchase this piece of Kerala history for your home.",
+            },
+            home5: {
+                title: "Padmanabha: The Supreme God",
+                price: 6000,
+                image: "https://www.artisanscrest.in/cdn/shop/products/sculpture-redstone-statue-narayan-09_grande.jpeg?v=1487658607",
+                description: "Narayan or Vishnu, the Supreme Being is the resting form of energy, the active form of Lord Naryana is called Vishnu, the preserver of the universe. The Lord is called Padmanabha as his navel is of the shape of a lotus flower and it is believed that the creator of the universe Lord Brahma was originated from the lotus navel of Narayana, the Supreme Being. This red stone sculpture depicts the lord on Sesha Naga. Shesh“ in Sanskrit and many Indian languages means “that which remains means snake, and snake symbolises energy in Hinduism.So when these two words shesha+naga are put together, it means, that which remains, ultimately, is Energy or Atman",
+            },
+            home6: {
+                title: "Samavaaya: The Perpetual Co-Inherence",
+                price: 6500,
+                image: "https://www.artisanscrest.in/cdn/shop/products/sculpture-redstone-statue-radha-krishna-02_grande.jpeg?v=1487658742",
+                description: "Radha and Krishana even after being separated is considered to have remained united in soul, spirit and in the consciousness of millions of followers. The love of Radha and Krishna is the blissful form of divine regality, an ocean of unlimited divine bliss in perpetual co-inherence otherwise known as Samavaaya in sanskrit. Krishna is referred as the “poornatam purushottam brahma” or the supreme personality of the god. Thus all the forms of god reside within Krishna, where all the forms are absolute and divinely one. This red stone carved sculpture in all its magnificence portrays the divine bonding of Radha and Krishna in Gokul. The natural splendor and opulence captured with such finesses is a testimony to a form of artistic brilliance.",
+            },
+
+
+
+            //WOOD CRAFT
+            wood1: {
+                title: "Gita Saar: The Essence of Existence",
+                image: "https://www.artisanscrest.in/cdn/shop/products/sculpture-wood-statue-krishna-arjuna-35_grande.jpg?v=1472896140",
+                price: 26500,
+                description: "This portrait depicts the conversation between Lord Krishna and Arjuna at the beginning of the great Mahabharat war. Krishna defines the duties of a Karam-Yogi to Arjuna who was reluctant to fight the battle against his own clan.Note: In all its detail this can be custom made i.e. hand crafted exclusively for you in a size of your choice to suit your needs."
+            },
+            wood2: {
+                title: "Abhaya Mudra: The Gesture of Re-assurance",
+                image: "https://www.artisanscrest.in/cdn/shop/products/sculpture-wood-statue-buddha-40_grande.jpg?v=1472639693",
+                price: 57000,
+                description: "The different poses of Buddha are called asanas. When standing, the hand is generally shown raised in a blessing gesture primarily conveying reassurance and in Sanskrit, it is called the Abhaya mudra. The abhaya mudra symbolizes protection, peace and dispelling of fear (Abhaya in Sanskrit). As per Buddhist texts, the lord had made this gesture upon attaining enlightenment. This was also the gesture made by the god while being attacked by an angry elephant and managing to calm it down. The gesture is made with the right hand raised to shoulder height, arm bent, and palm facing outward. The gesture demonstrates that the hand is empty of weapons and thus indicates friendship and peace. When the right hand is in the abhaya mudra, the left hand usually hangs loosely at the side of the body or makes the varada mudra, or gift-giving gesture.Note: In all its grandeur this can be custom made i.e. hand crafted exclusively for you in a size of your choice to suit your needs."
+            },
+            wood3: {
+                title: "Ananda-Swarupa: Embodiment of Supreme Bliss",
+                image: "https://www.artisanscrest.in/cdn/shop/products/acdtbwrkpf-08_grande.jpg?v=1634713029",
+                price: 72000,
+                description: "Celebrate the eternal love of Shri Krishna and Devi Radha by installing this exquisite sculpture at your home. Made of Beechwood, it depicts the duo blissfully lost in the music as a cow joins them. Each detail has been carefully carved by the artisan to bring out the true beauty of this sculpture.Note: In all its grandeur this can be custom made i.e., hand crafted exclusively for you in a size of your choice to suit your needs.Dimensions: 36"           
+            },
+            wood4: {
+                title: "Banvihari: Lord who Loves Roaming in Forest",
+                image: "https://www.artisanscrest.in/cdn/shop/products/acdtbwlkwc-08_grande.jpg?v=1634713474",
+                price: 66000,
+                description: "Born to Devaki and Vasudeva and raised by Yashoda and Nanda, Lord Krishna is the beloved of everyone in Gokul and Vrindavan. He was a mischievous kid who often roamed the forests with his elder brother Balaram and friends. He would also break into the houses of Gopis and steal butter. However, this never enraged anyone. In fact, the more mischief he did, the more adored he was. Hence, it is said that placing an idol of Lord Krishna at your house immediately makes the place more vibrant and cheerful with the Lord's good vibes."
+            },
+            wood5: {
+                title: "Dvidanta: The Elephant",
+                image: "https://www.artisanscrest.in/cdn/shop/products/ackbwwelrt-01_grande.jpg?v=1488438323",
+                price: 4500,
+                description: "Elephant represents real strength and power. The mightiest of Indian kingdoms in the historical past always had built upon their military prowess around elephants. Indra, the king of the gods, rode a celestial elephant named Airavat into battle and the elephant was said to exude an aura of power and formidability which was unmatched by others. This exquisite wooden sculpture captures the raw power and majesty of the elephant while the skillful hands of the master craftsman make the elephants deafening trumpet come alive through the raised trunk. This exquisite sculpture exudes majesty and grandeur and makes a perfect addition to your living room decor."
+            },
+            wood6: {
+                title: "Lord Balaji: Lord of the Universe",
+                image: "https://www.artisanscrest.in/cdn/shop/products/acdtbwlbop-36_grande.jpg?v=1634713425",
+                price: 57000,
+                description: "Lord Balaji is said to be an incarnation of Lord Vishnu and one of the most powerful gods of all times. As the bestower of boons and as the Lord who fulfils wishes, he is immensely worshipped and his abode on earth- Tirupati, widely visited. Bring home an idol of Lord Balaji today to spread the positive vibes and keep your house well protected from evil.Note: In all its grandeur this can be custom made i.e., hand crafted exclusively for you in a size of your choice to suit your needs."
+            },
+
+
+
+            //SCULPTURE PAGE
+            sculpture1: {
+                title: "Abhaya Mudra: Gesture of Reassurance",
+                price: 5600,
+                image: "https://www.artisanscrest.in/cdn/shop/products/sculpture-metal-stone-statue-buddha-20_grande.jpg?v=1467792803",
+                description: "The abhaya mudra symbolizes protection, peace and dispelling of fear (Abhaya in Sanskrit). As per Buddhist texts, the lord had made this gesture upon attaining enlightenment. This was also the gesture made by the god while being attacked by an angry elephant and managing to calm it down. The gesture is made with the right hand raised to shoulder height, arm bent, and palm facing outward. The gesture demonstrates that the hand is empty of weapons and thus indicates friendship and peace. When the right hand is in the abhaya mudra, the left hand usually hangs loosely at the side of the body or makes the varada mudra, or gift-giving gesture."
+            },
+            sculpture2: {
+                title: "Abhasa: Reflection of Consciousness",
+                price: 21500,
+                image: "https://www.artisanscrest.in/cdn/shop/products/sculpture-metal-statue-buddha-abhasa-27_jpg_grande.jpg?v=1496378477",
+                description: "The journey of the lord from being the crown prince siddhrtha gautam to gautam buddha the enlightend one, was about a path to self discovery. This brass-stone sculpture beautifully captures the Lord in a relaxed posture reflecting on the consciousness of the soul.Note: In all its detail this can be custom made and hand crafted exclusively in a size of your choice to suit your exclusive needs."
+            },
+            sculpture3: {
+                title: "Abhaya Mudra: Gesture of Reassurance",
+                price: 12500,
+                image: "https://www.artisanscrest.in/cdn/shop/products/sculpture-metal-statue-buddha-26_grande.jpg?v=1467793426",
+                description: "The abhaya mudra symbolizes protection, peace and dispelling of fear (Abhaya in Sanskrit). As per Buddhist texts, the lord had made this gesture upon attaining enlightenment. This was also the gesture made by the god while being attacked by an angry elephant and managing to calm it down. The gesture is made with the right hand raised to shoulder height, arm bent, and palm facing outward. The gesture demonstrates that the hand is empty of weapons and thus indicates friendship and peace. When the right hand is in the abhaya mudra, the left hand usually hangs loosely at the side of the body or makes the varada mudra, or gift-giving gesture."
+            },
+            sculpture4: {
+                title: "Anubandha: Inseparable in Spirit",
+                price: 96000,
+                image: "https://www.artisanscrest.in/cdn/shop/products/2017-04-17-PHOTO-00000039-48x23x13_grande.jpg?v=1495175135",
+                description: "While Krishna is known as the supreme God in Hindu epics, he is also revered for his fun loving side, best expressed during his childhood in Gokul. The stories of Krishna's mischevous antics and pranks form the base for most of the epics paying tribute to him. This exquisite sculpture depicts Lord Krishna as the delightful charming child, charming everyone around him and mesmerizing them with the beautiful music he composed on his flute. The master sculptor's skill and attention to detail is evident in the carving around the face and the peaceful expression of Krishna as he is lost in the music that he has created. The sculpture makes the music come alive and you can hear the notes as they waft through the woods of Gokul."
+            },
+            sculpture5: {
+                title: "Buddhadeva: Lord Buddha in Bhumisparsha Mudra",
+                price: 315000,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_20210824_grande.jpg?v=1646038123",
+                description: "It is said that after years of meditation, when Lord Buddha attained eternal wisdom and elightenment, he requested mother earth (Bhumi) to bear witness to the occurring. The right hand which is placed upon the right knee is complemented by the left hand that is held flat in the lap in the dhyana mudra of meditation, symbolising the union of method and wisdom. Bring home this blackstone sculpture of the Lord today to fill your space with positive vibrations.Note: In all its grandeur this can be custom made i.e., hand crafted exclusively for you in a size of your choice to suit your needs."
+            },
+            sculpture6: {
+                title: "Chiranjeevani: The Immortal",
+                price: 30500,
+                image: "https://www.artisanscrest.in/cdn/shop/products/sculpture-metal-stone-statue-hanuman-12_grande.jpg?v=1467361498",
+                description: "Hanuman or Vayuputra is the greatest symbol of valour, energy, intelligence, prowess, character, charm, discernment, composure, dexterity, vigor, and fortitude. It is believed as long as the name of Lord Ram remains in this world, Hanumanji will live in this world as well. This sclupture with natural finish is testimony to a rare artisanship of the distant past that has been kept alive by a group of extremley skilled artisans.Note: In all its detail this can be custom made and hand crafted exclusively in a size of your choice to suit your exclusive needs."
+            },
+
+
+            //PAINTING DETAILS
+            paint1: {
+                title: "Avaneesh : Ganesha Standing with Sevikas",
+                price: 2450 ,
+                image: "https://www.artisanscrest.in/cdn/shop/products/pattachitra-painting-handmade-ganesha-41_grande.jpeg?v=1486709530",
+                description: "Avaneesh:Lord of the world. This pattachitra depicts the destroyer of obstacles, lord Ganesha with sevikas.In Sanskrit,Pattachitra literally means cloth painting; 'pata' (cloth), and 'chitra' (painting). This form of art work was first conceptualized in Orissa and dates back to the 5th century. According to historical evidence, the first forms of Patachitra art originated in the village of Puri, where this art work is still quite popular. The artists who practiced this craft were known as Mohapatras or Maharanas, The astounding temples and architecture in Orissa is what lent its inspiration to all these creative craftsman who narrated pictorial stories through their paintings and detailed work.Note: In all its detail this can be custom made and hand crafted exclusively in a size of your choice to suit your exclusive needs."
+            },
+            paint2: {
+                title: "Abhati: The One Who Shines",
+                price: 34500,
+                image: "https://www.artisanscrest.in/cdn/shop/products/pattachitra-painting-tussar-silk-handmade-mahaveer-jain-01_grande.jpeg?v=1486723698",
+                description: "This painting in its grandeur depicts the life of Mahaveer Jain, the twenty fourth Tirthankara of the Jain traidition. Though Mahaveer was born in a royal family but had left all worldly possession to be a monk at the age of 30. Tirthankaras are the ones who were born as human beings but have attained enlightenment through sacrifice, meditation and self realization. Mahaveer Jain's pursuit of the ultimate truth, knowledge and bliss had continued for 12 long years and his ultimate realization is known as the Keval-Jnana.Pattachitra painters, who make paintings over a piece of cloth known as Patta or a dried palm leaf, specialize in this unique art-form since generations. "
+            },
+            paint3: {
+                title: "Akshaya Vata: The Eternal Banyan Tree",
+                price: 17500 ,
+                image: "https://www.artisanscrest.in/cdn/shop/products/pattachitra-painting-handmade-tree-of-life-01_grande.jpg?v=1486712295",
+                description: "It is believed that during the cyclic destruction of creation when the whole earth was enveloped with water, Akshaya Vrata remained unaffected. It is on the leaves of this tree that Lord Krishna rested in the form of a baby when land was no longer visible. And it is here that the immortal sage, Markandeya, received the cosmic vision of the Lord. It is under this tree that Buddha meditates eternally. Legend also has it that the Bodi tree at Gaya is a manifestation of this tree. Dimension 36 inches x 24 inches.Pattachitra painters, who make paintings over a piece of cloth known as Patta or a dried palm leaf, specialize in this unique art-form since generations. Raghurajpur a heritage crafts village in Puri district, Odisha is famous for this ancient craft-works which at least date back to 5 BC. A mixture of chalk and gum is used in unique proportion to create this beautiful piece."
+            },
+            paint4: {
+                title: "Annapoorneshwari: The Goddess who Feeds One and All",
+                price: 120000 ,
+                image: "https://www.artisanscrest.in/cdn/shop/products/02annapoorneswari_grande.jpg?v=1512624722",
+                description: "Annapoorna Devi or Annapoorneshwari is considered to be an avatar of goddess Parvati, wife of Lord Shiva. It is said that a long time ago, Devi Parvati was offended by Lord Shiva's remark that everything materialistic including food is Maya. To prove the importance of sustenance, the Goddess disappeared from the world and as a result, nature came to a standstill. However, she could not see the plight of her devotees and reappeared in Kashi. Lord Shiva, realising his mistake, rushed to her and begged for alms. This Kerala Mural depicts goddess Annapoorna in her resplendent glory after returning to Kashi, serving food to her devotees. This painting can be an excellent adornment to the abundance that flows through your dining room."
+            },
+            paint5: {
+                title: "Brajamohan: The attractive God from Braj",
+                price: 27000 ,
+                image: "https://www.artisanscrest.in/cdn/shop/products/acsmpclkpf-14_grande.jpg?v=1626162338",
+                description: "Lord Krishna possessed such charming effect on people of Vrindavan that his mere presence would mesmerize them and fill them with joy. The melody of his flute used to send Gopis of Vrindavan into a state of blissful trance. This Pattachitra painting captures the essence of the same. Painted in bright colours, this one is a great addition to your collection.Note: In all its grandeur this can be custom made i.e., handcrafted exclusively for you in a size of your choice to suit your needs."
+            },
+            paint6: {
+                title: "Jagannath: The Master of the Universe",
+                price: 1200 ,
+                image: "https://www.artisanscrest.in/cdn/shop/products/acbpspljop-84_grande.jpg?v=1488436881",
+                description: "In Sanskrit, Jagannatha translates to He who is the shelter of the moving World. Immortalized as the protector and lord of the living world, Jagannatha is the divine Lord of the world and everything in it. Known to work in tandem with his brother Balabhadra and his sister Subhadra, Jagannatha is the embodiment of protection and care for all living beings, and the master of the Universe and all beings within. Created over a piece of cloth or a dried palm leaf, the Pattachitra art form dates back to 5 BC and is a hallmark of Raghurajpur, a heritage crafts village in the Puri district of Odisha. A unique addition to your home, this beautiful work of art makes a perfect addition to your living room or den."
+            },
+
+
+            //TRIBAL DETAILS
+            tribal1: {
+                title: "Aaratrika: A Lamp",
+                price: 599,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_6935_grande.jpg?v=1518498766",
+                description: "Mirror stands, metal stands, glass holders..there are many ways to light a candle and put it on a pedestal, but none quite like using a natural medium like bamboo. This candle stand comes with a top cover to regulate the flame and is safe to use with fire. Bring it home to your prayer room, or place it outside the door on a cool evening to add that much-needed warmth."
+            },
+            tribal2: {
+                title: "Bhringaraka: A Flower Holder",
+                price: 999,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_6931_grande.jpg?v=1518498479",
+                description: "Flower vases are a great way to spice up the interiors of your house or office. They create an interesting aesthetic appeal as well as offer a sense of welcome and serenity. An all-natural flower vase can only act as an addition to all the beauty of your home. This tall flower vase with a geometric cut and intricately carved floral patterns is one such priceless artifact. Best spots to place it are beside a sofa or a T.V table or in one of the corners of the room. "
+            },
+            tribal3: {
+                title: "Dedeepya: Source Of Eternal Light",
+                price: 1250,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_6927_grande.jpg?v=1518498248",
+                description: "This lampshade made out of bamboo strips is a fine example of craftsmanship with all the patterns created and colours used. All it needs is a source of light to begin enchanting you with its presence. Using a traditional art method with a touch of modernity, this tall lampshade with two smaller ones beside it reminds one of the power art has in evoking emotions. Natural and enchanting, bedside tables or study tables are an ideal spot for this artifact."
+            },
+            tribal4: {
+                title: "Mandiram: A Place Of Worship",
+                price: 2999,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_6932_grande.jpg?v=1518498532",
+                description: "This artifact made entirely out of bamboo is one of the finest pieces of artwork by our artisans. It depicts a temple with an idol of Lord Jagannath and a gopuram with a flag on top. The artisan's eye for intricate detail can be noticed in the detailing done on the garlands and flowers, as well as the layers in the Gopuram. Place this in your puja-mandir to add some creativity to divinity. "
+            },
+            tribal5: {
+                title: "Pushpakarandaka: The Flower Basket",
+                price: 750,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_6920_grande.jpg?v=1518497977",
+                description: "Ladies of the bygone era are often depicted carrying a basket to collect flowers from the gardens or even forests. Flowers and women both represent tenderness. Such depictions often convey a sense of connection with nature. This flower basket made out of bamboo takes inspiration from that era with all its intricately and beautifully carved flowers. A fine piece of craftsmanship, this is a must-have for all nature lovers. "
+            },
+            tribal6: {
+                title: "Naudhwaja: A Boat with a Flag",
+                price: 750,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_6921_grande.jpg?v=1518497924",
+                description: "Bamboo is an excellent substitute for wood, light in weight, durable and retaining its natural charm. It is a long grass with a thick stem and is one of the fastest growing plants on earth. The craftability of Bamboo has made it one of the materials chosen for creating artifacts such as this one. This boat with a flag is a model made using bamboo and can be used as a decorative piece in your home to subtly represent your love for travel."
+            },
+
+
+            //HANDLOOM DETAILS
+            handloom1: {
+                title: "Handloom - Tussar Silk and Cotton Shawl",
+                price: 1250,
+                image: "https://www.artisanscrest.in/cdn/shop/products/acgptcshbg-68_grande.jpg?v=1487681646",
+                description: "Intricate handlooms and finely woven garments are hallmarks of rural Indian craftsmen. The attention to detail and work that goes into every piece makes these handloom products exquisite masterpieces in their own right and makes them treasured by fashion connoisseurs from across the world. This handwoven shawl, made up of Tussar Silk and cotton is characterized by the intricate embroidery and the contrasting colour patterns. The exquisitely woven, vibrant purple patterns perfectly stand out on the regal, grey background and combine to create a garment which is stylish, fashionable and is a testimony to the talent and skills of a group of artisans striving to keep alive an art form which has endured for centuries."
+            },
+            handloom2: {
+                title: "Handlooms - Tussar Silk stole",
+                price: 2250,
+                image: "https://www.artisanscrest.in/cdn/shop/products/acgptcstgc-81_grande.jpg?v=1487682157",
+                description: "Indian handloom creations are in great demand among fashion connoisseurs across the world for their bright and vibrant colours, their intricate embroidery and the handcrafted skill of the master weavers of rural India. This exquisite stole is a testimony to the skills and talent of the rural craftsmen who work magic with Tussar silk to create this masterpiece in cloth. The light and elegant stole is characterized by the bright orange base with red motifs along the hemlines, while the checked pattern creates a contrast in colours. The stole is designed to create an aesthetically pleasing visual while being comfortable enough to wear across all weather conditions. Add a touch of Indian tradition and culture to your wardrobe and own a piece of craftsmanship which has endured for centuries."
+            },
+            handloom3: {
+                title: "Handloom - Tussar Silk and Cotton Shawl",
+                price: 1250,
+                image: "https://www.artisanscrest.in/cdn/shop/products/acgptcshby-79_grande.jpg?v=1487682057",
+                description: "While the rural artisans of India are famed for making exquisite sculptures and paintings, traditional handlooms also occupy a special place in the homes of fashion and art lovers across the world. This intricately handwoven shawl, made of tussar silk and cotton is an exuisite masterpiece, a tribute to the handloom artisans of North and East India. This regal garment is characterized by the subtle, yet rich colours and stark contrasts, creating an eye-catching garment. The golden patterns perfectly contrast with the rich, black background to create a stylish, elegant and regal garment, perfect for gifting or pairing with your ethnic ensemble."
+            },
+            handloom4: {
+                title: "Handloom - Tussar Silk and Cotton Shawl",
+                price: 1250,
+                image: "https://www.artisanscrest.in/cdn/shop/products/acgptcshgb-87_grande.jpg?v=1487681961",
+                description: "The handloom industry of India is world famous and renowned by fashion connoisseurs everywhere for its intricate work, vibrant patterns and vivid designs and patterns which make each garment a veritable masterpiece in cloth. This intricately handwoven shawl, made of tussar silk and cotton is a testimony to the skills of the expert weavers of rural India. The elgant colours perfectly contrast with one another to create a subtle yet stylish masterpiece made out of tussar silk and cotton. This exquisite handloom product is durable, comfortable and stylish, with contrasting colours and adroitly woven patterns. The vibrant red patterns stand out sharply on the elegant and subtle grey background, combining to create a pleasing visual look and giving the garment a touch of class. Pair this regal shawl with an ethnic ensemble and add a touch of history, culture and a page out of the great Indian artistic tradition to your wardrobe."
+            },
+            handloom5: {
+                title: "Handloom- Tussar Silk and Cotton Shawl",
+                price: 3600,
+                image: "https://www.artisanscrest.in/cdn/shop/products/IMG_0457_grande.jpg?v=1594375654",
+                description: "Intricately woven patterns and bright colours are a hallmark of rural craftsmen of India who put in much attention to detail and love into each garment that they weave. This makes their works much loved and appreciated across the globe. Displayed here is a beautiful red and turquoise green Tussar silk stole that has a very lively feel to it while keeping the traditional look intact. It could be a great gift to your loved ones."
+            },
+            handloom6: {
+                title: "Handlooms - Tussar Silk stole",
+                price: 3300,
+                image: "https://www.artisanscrest.in/cdn/shop/products/acgptcstgp-83_grande.jpg?v=1487682284",
+                description: "Indian handloom creations are in great demand among fashion connoisseurs across the world for their bright and vibrant colours, their intricate embroidery and the handcrafted skill of the master weavers of rural India. This exquisite stole is a testimony to the skills and talent of the rural craftsmen who work magic with Tussar silk to create this masterpiece in cloth. The light and elegant stole is characterized by the vibrant orange, green and brown hues, perfectly complemented by the bright pink motifs along the borders of the garment. This stole has a pleasing visual appearance and is perfect to wear with a light coloured ethnic ensemble. The exquisite garment is made from light fabric, making it perfect to wear across all weather conditions and adds a touch of culture and artistic heritage to your wardrobe."
+            },
+    };
+    const params = new URLSearchParams(window.location.search);
+    const itemId = params.get('itemId');
+    const item = productData[itemId];
+
+    const container = document.getElementById("checkoutDetails");
+
+    if (item) {
+        container.innerHTML = `
+          <h2>Order Summary</h2>
+          <img src="${item.image}" alt="${item.title}" />
+          <h3>${item.title}</h3>
+          <div class="price">Rs. ${item.price.toLocaleString()}</div>
+          <p>${item.description.substring(0, 150)}...</p>
+          <button class="btn" onclick="proceedToPayment()">Proceed to Payment</button>
+        <button  onclick="goBack()" class="btn1">Back to Home</button>
+
+        `;
+    } else {
+        container.innerHTML = "<h2>Product not found.</h2>";
+    }
+
+    function proceedToPayment() {
+        alert("Redirecting to payment gateway...");
+    }
+    function goBack() {
+      window.location.href = "../../task.html";  
+    }
+</script>
+
+</body>
+</html>

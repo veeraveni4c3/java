@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painting Collection</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 30px;
+            background-color: #f1e5c6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #7c4f20;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .search-sort {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"],
+        select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            position: relative;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .card-price {
+            color: green;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .card-button {
+            padding: 8px 12px;
+            background-color: #7c4f20;
+            font-weight: bolder;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+
+        }
+
+        .card-button:hover {
+            background-color: #f7b016;
+            color: black;
+            font-weight: bolder;
+        }
+
+        .card-fav {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 40px;
+            color: #f8f5f5;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            transition: color 0.3s;
+        }
+
+        .card-fav.fav {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Painting Collection</h1>
+
+    <div class="controls">
+        <div class="search-sort">
+            <input type="text" id="searchInput" placeholder="Search paintings..." />
+            <select id="sortSelect">
+                <option value="">Sort By</option>
+                <option value="priceLow">Price: Low to High</option>
+                <option value="priceHigh">Price: High to Low</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+
+    <script>
+        const paintings = [
+            {
+                id: "paint1",
+                title: "Avaneesh : Ganesha Standing with Sevikas",
+                price: 2450,
+                image: "https://www.artisanscrest.in/cdn/shop/products/pattachitra-painting-handmade-ganesha-41_grande.jpeg?v=1486709530"
+            },
+            {
+                id: "paint2",
+                title: "Abhati: The One Who Shines",
+                price: 34500,
+                image: "https://www.artisanscrest.in/cdn/shop/products/pattachitra-painting-tussar-silk-handmade-mahaveer-jain-01_grande.jpeg?v=1486723698"
+            },
+            {
+                id: "paint3",
+                title: "Akshaya Vata: The Eternal Banyan Tree",
+                price: 17500,
+                image: "https://www.artisanscrest.in/cdn/shop/products/pattachitra-painting-handmade-tree-of-life-01_grande.jpg?v=1486712295"
+            },
+            {
+                id: "paint4",
+                title: "Annapoorneshwari: The Goddess who Feeds One and All",
+                price: 120000,
+                image: "https://www.artisanscrest.in/cdn/shop/products/02annapoorneswari_grande.jpg?v=1512624722"
+            },
+            {
+                id: "paint5",
+                title: "Brajamohan: The attractive God from Braj",
+                price: 27000,
+                image: "https://www.artisanscrest.in/cdn/shop/products/acsmpclkpf-14_grande.jpg?v=1626162338"
+            },
+            {
+                id: "paint6",
+                title: "Jagannath: The Master of the Universe",
+                price: 1200,
+                image: "https://www.artisanscrest.in/cdn/shop/products/acbpspljop-84_grande.jpg?v=1488436881"
+            }
+        ];
+
+        const grid = document.getElementById("productGrid");
+        const searchInput = document.getElementById("searchInput");
+        const sortSelect = document.getElementById("sortSelect");
+        const favoriteItems = new Set();
+
+        function render(data) {
+            grid.innerHTML = "";
+            data.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.onclick = () => {
+                    window.location.href = `Details/item-detail.html?itemId=${item.id}`;
+                };
+
+                card.innerHTML = `
+          <div class="card-fav" onclick="event.stopPropagation(); toggleFavorite('${item.id}', this)">♡</div>
+          <img src="${item.image}" alt="${item.title}" />
+          <div class="card-body">
+            <div class="card-title">${item.title}</div>
+            <div class="card-price">₹${item.price.toLocaleString()}</div>
+            <button class="card-button">View Details</button>
+          </div>
+        `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function filterAndSort() {
+            const query = searchInput.value.toLowerCase();
+            let filtered = paintings.filter(i => i.title.toLowerCase().includes(query));
+            const sort = sortSelect.value;
+            if (sort === "priceLow") filtered.sort((a, b) => a.price - b.price);
+            else if (sort === "priceHigh") filtered.sort((a, b) => b.price - a.price);
+            render(filtered);
+        }
+
+        function toggleFavorite(id, elem) {
+            if (favoriteItems.has(id)) {
+                favoriteItems.delete(id);
+                elem.classList.remove("fav");
+                elem.textContent = "♡";
+            } else {
+                favoriteItems.add(id);
+                elem.classList.add("fav");
+                elem.textContent = "♥";
+            }
+        }
+
+        searchInput.addEventListener("input", filterAndSort);
+        sortSelect.addEventListener("change", filterAndSort);
+        render(paintings);
+    </script>
+</body>
+
+</html>
